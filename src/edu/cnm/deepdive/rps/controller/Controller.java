@@ -55,8 +55,8 @@ public class Controller {
     terrain = new Terrain(new Random());
     defaultViewWidth = terrainView.getWidth();
     defaultViewHeight = terrainView.getHeight();
-    fitViewWidth = viewScroller.getWidth();
-    fitViewHeight = viewScroller.getHeight();
+    fitViewWidth = viewScroller.getPrefWidth();
+    fitViewHeight = viewScroller.getPrefHeight();
     iterationFormat = iterationsLabel.getText();
     terrainView.setSource(terrain.getCells());
     draw();
@@ -126,6 +126,9 @@ public class Controller {
     public void run() {
       while (running) {
         synchronized (lock) {
+          if (mixingSlider.getValue() != 0) {
+            terrain.mixing((int) mixingSlider.getValue());
+          }
           terrain.iterate(STEPS_PER_ITERATION);
         }
         try {

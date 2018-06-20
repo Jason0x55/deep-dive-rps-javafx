@@ -64,4 +64,20 @@ public class Terrain {
     return iterations;
   }
 
+  public void mixing(int pairs) {
+    int playerOneRow;
+    int playerOneCol;
+    int playerTwoRow;
+    int playerTwoCol;
+    Breed swap;
+    for (int i = 0; i < pairs; i++) {
+      playerOneRow = rng.nextInt(cells.length);
+      playerOneCol = rng.nextInt(cells[playerOneRow].length);
+      playerTwoRow = rng.nextInt(cells.length);
+      playerTwoCol = rng.nextInt(cells[playerOneRow].length);
+      swap = cells[playerOneRow][playerOneCol];
+      cells[playerOneRow][playerOneCol] = cells[playerTwoRow][playerTwoCol];
+      cells[playerTwoRow][playerTwoCol] = swap;
+    }
+  }
 }
